@@ -1,0 +1,14 @@
+-antetul? cum il adaug langa datele pe care vreau sa le trimit?
+-tema proiectului presupune o retea server-client? transfer info intre doua calculatoare prin intermediul unei retele?
+pc1---------pc2
+     server
+sau pc1 poate ideplini rolul de server, iar pc2 sa fie client?
+
+-am intalnit denumirea de coliziune (atunci cand doua surse transmit simultan, se pot pierde date), e complet diferit de congestie?
+-UPD+controlul congestiei => TCP ???
+TCP are "incorporat" implementarea controlului congestiei?
+
+-timpul pe care il asteapta clientul pt a retrimite info (daca nu primeste notificafer) este definit de noi?
+-daca UDP nu tine cont de ordinea in care sunt transmise datele, e posibil sa primim date eronate, trebuie sa comparam cumva ceea ce
+ar trebui sa primim cu ceea ce primim??? cum??
+-antetul UDP descifrare :) -un exemplu concret
