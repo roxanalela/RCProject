@@ -3,10 +3,10 @@
 pc1---------pc2
      server
 sau pc1 poate ideplini rolul de server, iar pc2 sa fie client?
-
+---de unde stim care este limita???
 
 ----de ce ack de 3 ori
-
+--fereastra de congestie reprezinta practic cate pachete au fost trimise/primite cu succes?
 -am intalnit denumirea de coliziune (atunci cand doua surse transmit simultan, se pot pierde date), e complet diferit de congestie?
 -UPD+controlul congestiei => TCP ???
 TCP are "incorporat" implementarea controlului congestiei?
