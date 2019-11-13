@@ -17,7 +17,7 @@ with open('received_file', 'wb') as f:
             break
         # write data to a file
         f.write(data)
-s.send('Cu pacere fata draga')
+
 f.close()
 print('Successfully get the file')
 s.close()
