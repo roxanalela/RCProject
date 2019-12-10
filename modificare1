@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+from tkinter import *
+from tkinter import ttk
+from tkinter import filedialog
+
+import matplotlib
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import datetime
+
+import socket
+
+port = 50000
+s = socket.socket()
+host = ""   # ip laptop
+s.bind((host, port))
+s.listen(5)                     # astept conexiunea cu clientul, dureaza prea mult??!.
+
+print ('Server listening....')
+
+class Root(Tk):
+    def __init__(self):
+        super(Root, self).__init__()
+        self.title("TCP File Transfer")
+        self.minsize(400, 200)
+        self.labelFrame = ttk.LabelFrame(self, text="Open File")
+        self.labelFrame.grid(column=0, row=1, padx=20, pady=20)
+        self.button()
+
+
+    def button(self):
+        self.button = ttk.Button(self.labelFrame, text="Browse A File", command=self.fileDialog)
+        self.button.grid(column=1, row=1)
+
+        button2 = ttk.Button( text="Send!",command=self.Trimitere)
+        button2.grid(column=2, row=3)
+
+
+    def fileDialog(self):
+        self.filename = filedialog.askopenfilename(initialdir="/", title="Select A File", filetype=(("txt files", "*.txt"), ("all files", "*.*")))
+        self.label = ttk.Label(self.labelFrame, text="")
+        self.label.grid(column=1, row=2)
+        self.label.configure(text=self.filename)
+
+    def Trimitere(self):
+        print(self.filename)
+        while True:
+            conn, addr = s.accept()  #stabilesc o conexiune cu client.py.
+            print('Got connection from', addr)
+            data = conn.recv(32)
+            print('Server received', repr(data))
+
+            file = self.filename
+            f = open(file, 'rb')
+            l = f.read(32)
+
+            my_str = "******************************"
+            my_str_as_bytes = str.encode(my_str)
+            type(my_str_as_bytes)  #ma asigur ca e o reprezentare tip byte
+            my_decoded_str = my_str_as_bytes.decode()
+            type(my_decoded_str)
+
+            while (l):
+                conn.send(l)
+                conn.send(my_str_as_bytes)
+                print('Sent ', repr(l))
+                l = f.read(32)
+
+            f.close()
+
+
+
+            print('Done sending')
+            #conn.send('\nCe faci, Condrea? Multam de conectare! :*')
+            conn.close()
+# fig = plt.figure()
+# ax1 = fig.add_subplot(1, 1, 1)
+# def hai(i):
+#     count = 0
+#     vy = [1,2,3,4,5,6,7,8,9,5]
+#     vx = [5,7,2,5,3,6,8,94,2,7]
+#     # while (count < 20):
+#     #     count += 1
+#     #     vy.append(count)
+#     #     vx.append(count)
+#
+#     # x = [datetime.datetime.now() + datetime.timedelta(seconds=i) for i in range(len(l))]
+#     ax1.clear()
+#     ax1.plot(vx, vy)
+
+
+if __name__=='__main__':
+
+
+    # ani=animation.FuncAnimation(fig,hai,interval=1000)
+    # plt.show()
+    root = Root()
+    root.mainloop()
+    print('Connection done')
