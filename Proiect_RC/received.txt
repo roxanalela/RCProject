@@ -1,0 +1,35 @@
+inssfgfhss
+wyyFTYT7I82Y2GW;/.D
+W;;KWMD;WLLDW'D KMS,N,NAmnsmndnkwd
+from Tkinter import *
+import tkFileDialog
+
+
+def fileDialog():
+    filename = tkFileDialog.askopenfilename(initialdir="C:\Users\\roxan\PycharmProjects\LELA-RCP", title="Select A File", filetype=(("txt files", "*.txt"), ("image files", ".png")))
+    label = Label(labelFrame, text="")
+    label.grid(column=1, row=2)
+    label.configure(text=filename)
+
+root=Tk()
+
+root.title("TCP File Transfer")
+root.minsize(400, 200)
+labelFrame = LabelFrame(root, text="Open File")
+labelFrame.grid(column=0, row=1, padx=20, pady=20)
+
+
+
+
+button = Button(labelFrame, text="Browse A File", command=fileDialog)
+button.grid(column=1, row=1)
+
+button2 = Button( text="Send!")
+button2.grid(column=2, row=3)
+
+
+
+
+root.mainloop()
+
+stopclient
